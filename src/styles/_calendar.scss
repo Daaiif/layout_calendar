@@ -4,29 +4,30 @@
   gap: $margin;
   margin: 5rem auto;
   width: $calendar-width;
+
+  div {
+    @include default-styles;
+
+    &:hover {
+      @include hover-styles;
+    }
+  }
+
+  @for $i from 28 through 31 {
+    &-#{$i}>div:nth-child(n+#{$i + 1}) {
+      display: none;
+    }
+  }
+
+  @for $j from 1 through 31 {
+    & :nth-child(#{$j})::after {
+      content: "#{$j}";
+    }
+  }
 }
 
 @each $day,$marg in $days {
   .calendar-#{$day} :first-child {
     margin-left: ($size + $margin)  * $marg;
-  }
-}
-
-@for $i from 28 through 31 {
-  .calendar-#{$i} {
-
-    @for $j from 1 through $i {
-      & :nth-child(#{$j}) {
-        @include default-styles;
-
-        &:hover {
-          @include hover-styles;
-        }
-      }
-
-      & :nth-child(#{$j})::after {
-        content: "#{$j}";
-      }
-    }
   }
 }
