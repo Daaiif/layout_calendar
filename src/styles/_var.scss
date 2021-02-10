@@ -1,0 +1,13 @@
+$size: 100px;
+$margin: 1px;
+$days-in-line: 7;
+$days: (
+  "tue": 1,
+  "wed": 2,
+  "thu": 3,
+  "fri": 4,
+  "sat": 5,
+  "sun": 6
+);
+$calendar-width: 
+  $size * $days-in-line + $margin * ($days-in-line - 1);

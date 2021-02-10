@@ -1,0 +1,32 @@
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $margin;
+  margin: 5rem auto;
+  width: $calendar-width;
+}
+
+@each $day,$marg in $days {
+  .calendar-#{$day} :first-child {
+    margin-left: ($size + $margin)  * $marg;
+  }
+}
+
+@for $i from 28 through 31 {
+  .calendar-#{$i} {
+
+    @for $j from 1 through $i {
+      & :nth-child(#{$j}) {
+        @include default-styles;
+
+        &:hover {
+          @include hover-styles;
+        }
+      }
+
+      & :nth-child(#{$j})::after {
+        content: "#{$j}";
+      }
+    }
+  }
+}
